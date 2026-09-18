@@ -98,9 +98,8 @@ def predict():
 
         # -------- Text Processing --------
 
-        cleaned = preprocess(review_text)
-
-        vectorized = vectorization_pipeline.transform([cleaned])
+        # Use raw review_text because train_model.py fit the TfidfVectorizer on raw text, not preprocessed text.
+        vectorized = vectorization_pipeline.transform([review_text])
 
         # -------- Combine Features --------
 
