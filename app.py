@@ -15,18 +15,20 @@ CORS(app)
 # -----------------------------
 # Download NLTK resources (only first time)
 # -----------------------------
-nltk.download('punkt')
-nltk.download('stopwords')
+nltk.data.path.append('/tmp')
+nltk.download('punkt', download_dir='/tmp')
+nltk.download('stopwords', download_dir='/tmp')
 
 stop_words = set(nltk.corpus.stopwords.words('english'))
 
 # -----------------------------
 # Load Models
 # -----------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 try:
-    scaling_pipeline = joblib.load("models/scaling_pipeline.pkl")
-    vectorization_pipeline = joblib.load("models/vectorization_pipeline.pkl")
-    review_classifier_model = joblib.load("models/Review_classifier_LG.pkl")
+    scaling_pipeline = joblib.load(os.path.join(BASE_DIR, "models/scaling_pipeline.pkl"))
+    vectorization_pipeline = joblib.load(os.path.join(BASE_DIR, "models/vectorization_pipeline.pkl"))
+    review_classifier_model = joblib.load(os.path.join(BASE_DIR, "models/Review_classifier_LG.pkl"))
     print("Models loaded successfully")
 except Exception as e:
     print("Model loading error:", e)
