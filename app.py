@@ -17,6 +17,7 @@ CORS(app)
 # -----------------------------
 nltk.data.path.append('/tmp')
 nltk.download('punkt', download_dir='/tmp')
+nltk.download('punkt_tab', download_dir='/tmp')
 nltk.download('stopwords', download_dir='/tmp')
 
 stop_words = set(nltk.corpus.stopwords.words('english'))
